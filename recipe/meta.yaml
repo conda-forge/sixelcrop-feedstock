@@ -1,5 +1,5 @@
 {% set name = "sixelcrop" %}
-{% set version = "0.1.3" %}
+{% set version = "0.1.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/sixelcrop-{{ version }}.tar.gz
-  sha256: 044148df718f65ead060aa2ab55313df6aff40de1d3e35300fa75d26e05e2600
+  sha256: b0fdf94d21a0ad8274e1230798eb2f78f8fc3fade335aabb43d855d099b24be4
 
 build:
   entry_points:
