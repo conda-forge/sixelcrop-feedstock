@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: sixelcrop
+  version: "0.1.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sixelcrop-${{ version }}.tar.gz
+  sha256: d6c05ac4fbd6e201f794aded12300fb427573172c0544a1fd25a48a66a5bc86f
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - sixelcrop = sixelcrop:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - sixelcrop
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - sixelcrop --help
+
+about:
+  summary: A library for cropping sixel images
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://pypi.org/project/sixelcrop/
+  repository: https://github.com/joouha/sixelcrop
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
